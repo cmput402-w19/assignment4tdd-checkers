@@ -35,6 +35,9 @@ public class PieceTest
         return new TestSuite( PieceTest.class );
     }
 
+    /**
+     * test for constructor, it should throw an exception if the arguments are not valid
+     */
     public void testConstructor() {
     	try {
     		ConcretePiece concretePiece = new ConcretePiece("R", 0, 0);
@@ -99,6 +102,10 @@ public class PieceTest
     	}
     }
     
+    /**
+     * test for getColor
+     * @throws Exception
+     */
     public void testGetColor() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 0, 0);
     	assert(concretePiece.getColor() == "R");
@@ -106,16 +113,28 @@ public class PieceTest
     	assert(concretePiece.getColor() == "B");
     }
     
+    /**
+     * test for getXPosition
+     * @throws Exception
+     */
     public void testGetXPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	assert(concretePiece.getXPosition() == 1);
     }
     
+    /**
+     * test for getYPosition
+     * @throws Exception
+     */
     public void testGetYPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	assert(concretePiece.getYPosition() == 2);
     }
     
+    /**
+     * test for setPosition, it should throw an exception if the arguments are not valid
+     * @throws Exception
+     */
     public void testSetPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	
@@ -152,6 +171,10 @@ public class PieceTest
     	}
     }
     
+    /**
+     * test for isEnemyPiece
+     * @throws Exception
+     */
     public void testIsEnemyPiece() throws Exception {
     	ConcretePiece concretePiece1 = new ConcretePiece("R", 0, 0);
     	ConcretePiece concretePiece2 = new ConcretePiece("B", 1,1);
