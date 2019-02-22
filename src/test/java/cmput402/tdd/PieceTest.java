@@ -117,4 +117,13 @@ public class PieceTest
     	assert(concretePiece.getColor() == "B");
     }
     
+    /**
+     * test for getYPosition
+     * @throws Exception
+     */
+    public void testGetYPosition() throws Exception {
+    	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
+    	assert(concretePiece.getYPosition() == 2);
+    }
+    
 }

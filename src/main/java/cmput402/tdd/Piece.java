@@ -31,4 +31,8 @@ public abstract class Piece {
 	public String getColor() {
 		return this.color;
 	}
+	
+	public int getYPosition() {
+		return (Integer) null;
+	}
 }
