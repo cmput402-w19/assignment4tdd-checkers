@@ -8,7 +8,7 @@ import junit.framework.TestSuite;
 
 class ConcretePiece extends Piece {
 
-	public ConcretePiece(String color, int xPosition, int yPosition) {
+	public ConcretePiece(String color, int xPosition, int yPosition) throws Exception {
 		super(color, xPosition, yPosition);
 		// TODO Auto-generated constructor stub
 	}
@@ -99,24 +99,24 @@ public class PieceTest
     	}
     }
     
-    public void testGetColor() {
+    public void testGetColor() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 0, 0);
     	assert(concretePiece.getColor() == "R");
     	concretePiece = new ConcretePiece("B", 0, 0);
     	assert(concretePiece.getColor() == "B");
     }
     
-    public void testGetXPosition() {
+    public void testGetXPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	assert(concretePiece.getXPosition() == 1);
     }
     
-    public void testGetYPosition() {
+    public void testGetYPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	assert(concretePiece.getYPosition() == 2);
     }
     
-    public void testSetPosition() {
+    public void testSetPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	
     	int max = 8;
@@ -152,7 +152,7 @@ public class PieceTest
     	}
     }
     
-    public void testIsEnemyPiece() {
+    public void testIsEnemyPiece() throws Exception {
     	ConcretePiece concretePiece1 = new ConcretePiece("R", 0, 0);
     	ConcretePiece concretePiece2 = new ConcretePiece("B", 1,1);
     	ConcretePiece concretePiece3 = new ConcretePiece("R", 2, 2);
