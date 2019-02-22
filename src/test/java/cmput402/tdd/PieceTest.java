@@ -135,4 +135,41 @@ public class PieceTest
     	assert(concretePiece.getYPosition() == 2);
     }
     
+    /**
+     * test for setPosition, it should throw an exception if the arguments are not valid
+     * @throws Exception
+     */
+    public void testSetPosition() throws Exception {
+    	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
+    	
+    	int[] validTestInput = {0, 5, 7};
+    	int[] invalidTestInput = {-1, 8};
+    	for (int i = 0; i < validTestInput.length; i++) {
+    		try {
+				concretePiece.setPosition(validTestInput[i], 0);
+				assert(concretePiece.getXPosition() == validTestInput[i]);
+	        	assert(concretePiece.getYPosition() == 0);
+	        	concretePiece.setPosition(0, validTestInput[i]);
+	        	assert(concretePiece.getXPosition() == 0);
+	        	assert(concretePiece.getYPosition() == validTestInput[i]);
+			} catch (Exception e) {
+				assert(false);
+			}
+    	}
+    	
+    	for (int i = 0; i < invalidTestInput.length; i++) {
+    		try {
+    			concretePiece.setPosition(invalidTestInput[i], 0);
+    			assert(false);
+    		} catch(Exception e) {
+	    		assert(true);
+	    	}
+    		try {
+    			concretePiece.setPosition(0, invalidTestInput[i]);
+    			assert(false);
+    		} catch(Exception e) {
+	    		assert(true);
+	    	}
+    	}
+    }
 }

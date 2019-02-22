@@ -39,4 +39,8 @@ public abstract class Piece {
 	public int getYPosition() {
 		return this.yPosition;
 	}
+	
+	public void setPosition(int x, int y){
+		
+	}
 }
