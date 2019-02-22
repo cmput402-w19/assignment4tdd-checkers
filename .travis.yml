@@ -1,6 +1,6 @@
 language: java
 
-script: "mvn cobertura:cobertura"
-
-after_success:
+script: 
+- mvn test
+- mvn cobertura:cobertura
 - bash <(curl -s https://codecov.io/bash)
