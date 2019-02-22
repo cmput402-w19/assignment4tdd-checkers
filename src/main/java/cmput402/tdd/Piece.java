@@ -32,6 +32,10 @@ public abstract class Piece {
 		return this.color;
 	}
 	
+	public int getXPosition() {
+		return (Integer) null;
+	}
+	
 	public int getYPosition() {
 		return this.yPosition;
 	}

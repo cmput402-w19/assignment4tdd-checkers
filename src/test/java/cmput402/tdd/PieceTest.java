@@ -118,6 +118,15 @@ public class PieceTest
     }
     
     /**
+     * test for getXPosition
+     * @throws Exception
+     */
+    public void testGetXPosition() throws Exception {
+    	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
+    	assert(concretePiece.getXPosition() == 1);
+    }
+    
+    /**
      * test for getYPosition
      * @throws Exception
      */
