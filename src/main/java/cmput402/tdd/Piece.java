@@ -29,6 +29,6 @@ public abstract class Piece {
     }
 	
 	public String getColor() {
-		return null;
+		return this.color;
 	}
 }
