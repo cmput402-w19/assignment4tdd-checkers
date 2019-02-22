@@ -52,6 +52,15 @@ public abstract class Piece {
 	}
 	
 	protected Boolean isEnemyPiece(Piece targetPiece) {
-		return null;
+		if(targetPiece == null) {
+			return false;
+		}
+		if(this.getColor() == "B" && targetPiece.getColor() == "R") {
+			return true;
+		}
+		if(this.getColor() == "R" && targetPiece.getColor() == "B") {
+			return true;
+		}
+		return false;
 	}
 }
