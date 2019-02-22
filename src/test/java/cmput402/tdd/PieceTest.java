@@ -124,12 +124,16 @@ public class PieceTest
     	int[] validTestInput = {0, 5, 7};
     	int[] invalidTestInput = {-1, 8};
     	for (int i = 0; i < validTestInput.length; i++) {
-    		concretePiece.setPosition(validTestInput[i], 0);
-        	assert(concretePiece.getXPosition() == validTestInput[i]);
-        	assert(concretePiece.getYPosition() == 0);
-        	concretePiece.setPosition(0, validTestInput[i]);
-        	assert(concretePiece.getXPosition() == 0);
-        	assert(concretePiece.getYPosition() == validTestInput[i]);
+    		try {
+				concretePiece.setPosition(validTestInput[i], 0);
+				assert(concretePiece.getXPosition() == validTestInput[i]);
+	        	assert(concretePiece.getYPosition() == 0);
+	        	concretePiece.setPosition(0, validTestInput[i]);
+	        	assert(concretePiece.getXPosition() == 0);
+	        	assert(concretePiece.getYPosition() == validTestInput[i]);
+			} catch (Exception e) {
+				assert(true == false);
+			}
     	}
     	
     	for (int i = 0; i < invalidTestInput.length; i++) {
