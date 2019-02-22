@@ -40,46 +40,44 @@ public class PieceTest
      */
     public void testConstructor() {
     	try {
-    		ConcretePiece concretePiece = new ConcretePiece("R", 0, 0);
+    		new ConcretePiece("R", 0, 0);
     		assert(true == true);
     	} catch(Exception e) {
     		assert(true == false);
     	}
     	
     	try {
-    		ConcretePiece concretePiece = new ConcretePiece("B", 0, 0);
+    		new ConcretePiece("B", 0, 0);
     		assert(true == true);
     	} catch(Exception e) {
     		assert(true == false);
     	}
     	
     	try {
-    		ConcretePiece concretePiece = new ConcretePiece("", 0, 0);
+    		new ConcretePiece("", 0, 0);
     		assert(true == false);
     	} catch(Exception e) {
     		assert(true == true);
     	}
     	
     	try {
-    		ConcretePiece concretePiece = new ConcretePiece("X", 0, 0);
+    		new ConcretePiece("X", 0, 0);
     		assert(true == false);
     	} catch(Exception e) {
     		assert(true == true);
     	}
     	
-    	int max = 8;
-    	int min = -1;
     	int[] validTestInput = {0, 5, 7};
     	int[] invalidTestInput = {-1, 8};
     	for (int i = 0; i < validTestInput.length; i++) {
 			try {
-	    		ConcretePiece concretePiece = new ConcretePiece("R", validTestInput[i], 0);
+	    		new ConcretePiece("R", validTestInput[i], 0);
 	    		assert(true == true);
 	    	} catch(Exception e) {
 	    		assert(true == false);
 	    	}
 			try {
-	    		ConcretePiece concretePiece = new ConcretePiece("R",0, validTestInput[i]);
+	    		new ConcretePiece("R",0, validTestInput[i]);
 	    		assert(true == true);
 	    	} catch(Exception e) {
 	    		assert(true == false);
@@ -88,13 +86,13 @@ public class PieceTest
     	
     	for (int i = 0; i < invalidTestInput.length; i++) {
 			try {
-	    		ConcretePiece concretePiece = new ConcretePiece("R", invalidTestInput[i], 0);
+	    		new ConcretePiece("R", invalidTestInput[i], 0);
 	    		assert(true == false);
 	    	} catch(Exception e) {
 	    		assert(true == true);
 	    	}
 			try {
-	    		ConcretePiece concretePiece = new ConcretePiece("R",0, invalidTestInput[i]);
+	    		new ConcretePiece("R",0, invalidTestInput[i]);
 	    		assert(true == false);
 	    	} catch(Exception e) {
 	    		assert(true == true);
@@ -138,8 +136,6 @@ public class PieceTest
     public void testSetPosition() throws Exception {
     	ConcretePiece concretePiece = new ConcretePiece("R", 1, 2);
     	
-    	int max = 8;
-    	int min = -1;
     	int[] validTestInput = {0, 5, 7};
     	int[] invalidTestInput = {-1, 8};
     	for (int i = 0; i < validTestInput.length; i++) {
