@@ -33,6 +33,6 @@ public abstract class Piece {
 	}
 	
 	public int getYPosition() {
-		return (Integer) null;
+		return this.yPosition;
 	}
 }
