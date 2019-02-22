@@ -40,7 +40,14 @@ public abstract class Piece {
 		return this.yPosition;
 	}
 	
-	public void setPosition(int x, int y){
-		
+	public void setPosition(int x, int y) throws Exception {
+		if(x < minValidSize || x > maxValidSize) {
+			throw new Exception("invalid x");
+		}
+		if(y < minValidSize || y > maxValidSize) {
+			throw new Exception("invalid y");
+		}
+		this.xPosition = x;
+		this.yPosition = y;
 	}
 }
