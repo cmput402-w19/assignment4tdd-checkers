@@ -41,13 +41,17 @@ public abstract class Piece {
 	}
 	
 	public void setPosition(int x, int y) throws Exception {
-		if(x < minValidSize || x > maxValidSize) {
+		if(x < this.minValidSize || x > this.maxValidSize) {
 			throw new Exception("invalid x");
 		}
-		if(y < minValidSize || y > maxValidSize) {
+		if(y < this.minValidSize || y > this.maxValidSize) {
 			throw new Exception("invalid y");
 		}
 		this.xPosition = x;
 		this.yPosition = y;
+	}
+	
+	protected Boolean isEnemyPiece(Piece targetPiece) {
+		return null;
 	}
 }

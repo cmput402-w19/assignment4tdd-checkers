@@ -172,4 +172,20 @@ public class PieceTest
 	    	}
     	}
     }
+    
+    /**
+     * test for isEnemyPiece
+     * @throws Exception
+     */
+    public void testIsEnemyPiece() throws Exception {
+    	ConcretePiece concretePiece1 = new ConcretePiece("R", 0, 0);
+    	ConcretePiece concretePiece2 = new ConcretePiece("B", 1,1);
+    	ConcretePiece concretePiece3 = new ConcretePiece("R", 2, 2);
+    	ConcretePiece concretePiece4 = new ConcretePiece("B", 3, 3);
+    	assert(concretePiece1.isEnemyPiece(concretePiece2) == true);
+    	assert(concretePiece2.isEnemyPiece(concretePiece1) == true);
+    	assert(concretePiece1.isEnemyPiece(concretePiece3) == false);
+    	assert(concretePiece2.isEnemyPiece(concretePiece4) == false);
+    	assert(concretePiece2.isEnemyPiece(null) == false);
+    }
 }
