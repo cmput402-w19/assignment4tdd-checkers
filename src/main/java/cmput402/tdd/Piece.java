@@ -5,6 +5,8 @@ public abstract class Piece {
 	private int xPosition;
 	private int yPosition;
 	private String color;
+	private int minValidSize = 0;
+	private int maxValidSize = 7;
 	
 	public Piece(String color, int xPosition, int yPosition) throws Exception {
 		if(color == "R" || color == "B") {
@@ -13,13 +15,13 @@ public abstract class Piece {
 			throw new Exception("invalid color");
 		}
 		
-		if(xPosition < 0 || xPosition >= 8) {
+		if(xPosition < minValidSize || xPosition > maxValidSize) {
 			throw new Exception("invalid xPosition");
 		} else {
 			this.xPosition = xPosition;
 		}
 		
-		if(yPosition < 0 || yPosition >= 8) {
+		if(yPosition < minValidSize || yPosition > maxValidSize) {
 			throw new Exception("invalid yPosition");
 		} else {
 			this.yPosition = yPosition;
