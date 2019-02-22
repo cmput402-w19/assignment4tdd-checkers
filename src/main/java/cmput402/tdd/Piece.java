@@ -27,4 +27,8 @@ public abstract class Piece {
 			this.yPosition = yPosition;
 		}
     }
+	
+	public String getColor() {
+		return null;
+	}
 }

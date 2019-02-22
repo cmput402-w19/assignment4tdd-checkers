@@ -106,4 +106,15 @@ public class PieceTest
     	}
     }
     
+    /**
+     * test for getColor
+     * @throws Exception
+     */
+    public void testGetColor() throws Exception {
+    	ConcretePiece concretePiece = new ConcretePiece("R", 0, 0);
+    	assert(concretePiece.getColor() == "R");
+    	concretePiece = new ConcretePiece("B", 0, 0);
+    	assert(concretePiece.getColor() == "B");
+    }
+    
 }
