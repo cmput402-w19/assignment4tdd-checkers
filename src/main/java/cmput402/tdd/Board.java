@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 public class Board {
 
 	private int currentTotalBlackPieces;
@@ -48,5 +50,10 @@ public class Board {
 		boolean isOutOfVerticalBound = ((yCoord < 0) || (yCoord > 7));
 
 		return !(isOutOfHorizontalBound || isOutOfVerticalBound);
+	}
+
+	public int[] isValidMove(int targetRow, int targetCol, ArrayList<int[]> moves) {
+
+		return null;
 	}
 }

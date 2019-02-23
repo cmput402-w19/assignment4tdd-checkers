@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cmput402.tdd.Board;
 import junit.framework.Test;
@@ -90,5 +91,33 @@ public class BoardTest extends TestCase {
         assertFalse(checkersBoard.pieceInLegalBound(8, 2));
         assertFalse(checkersBoard.pieceInLegalBound(3, -1));
         assertFalse(checkersBoard.pieceInLegalBound(3, 9));
+    }
+
+    /**
+     * Unit test to validate if the target move and the direction is valid
+     * @throws Exception
+     */
+
+    public void testIsValidMove() throws Exception {
+        Board checkersBoard = new Board();
+
+        ArrayList<int[]> testMoves = new ArrayList<int[]>() ;
+        int[] output = checkersBoard.isValidMove(2, 4, testMoves);
+        int[] expectedOutput = null;
+        assertNull(output);
+
+        int[] negDir = new int[] {-1, 2, 1, 1};
+        testMoves.add(negDir);
+        output = checkersBoard.isValidMove(2, 4, testMoves);
+        assertNull(output);
+
+        int[] legalDir = new int[] {2, 4, 1, 2};
+        testMoves.add(legalDir);
+        output = checkersBoard.isValidMove(2, 4, testMoves);
+        expectedOutput = new int[] {2, 4, 1, 2};
+        assertTrue(Arrays.equals(output, expectedOutput));
+
+        output = checkersBoard.isValidMove(1, 4, testMoves);
+        assertNull(output);
     }
 }
