@@ -9,7 +9,12 @@ public class Board {
 	public Board() throws Exception {
 		this.currentTotalBlackPieces = 12;
 		this.currentTotalRedPieces = 12;
+		this.initBoard();
+	}
+
+	public void initBoard() throws Exception {
 		board = new Piece[8][8];
+
 		for(int oddCol = 1, evenCol = 0; oddCol < 8; oddCol +=2, evenCol +=2) {
 			board[0][evenCol] = new Pawn("B", 0, evenCol);
 			board[1][oddCol] = new Pawn("B", 1, oddCol);
