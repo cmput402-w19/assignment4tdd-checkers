@@ -115,6 +115,9 @@ public class KingTest
      * test for testGetTargetCoord 
      * it should return the 4 different diagonal coordinate of distance 1 or 2 
      * depending on the arguments
+     * output: [targetX, targetY, distance, direction] 
+     * where direction:3 is up left, direction:4 is down left, 
+     * direction:5 is up right, direction:6 is down right
      * @throws Exception 
      */
     public void testGetTargetCoord() throws Exception {
