@@ -33,4 +33,21 @@ public class BoardTest extends TestCase {
 
 	    assert(checkersBoard.getRedTotalPiece() == 12);
     }
+
+    /**
+     * This unit test expects the board to initialize the pieces correctly
+     */
+    public void testGetPiece() {
+	    Board checkersBoard = new Board();
+
+        for(int evenCol = 0, oddCol = 1; evenCol < maxLength; ++evenCol, ++oddCol) {
+            assert(checkersBoard.getPiece(0, evenCol) instanceof Piece);
+            assert(checkersBoard.getPiece(1, oddCol) instanceof Piece);
+            assert(checkersBoard.getPiece(2, evenCol) instanceof Piece);
+
+            assert(checkersBoard.getPiece(5, oddCol) instanceof Piece);
+            assert(checkersBoard.getPiece(6, evenCol) instanceof Piece);
+            assert(checkersBoard.getPiece(7, oddCol) instanceof Piece);
+        }
+    }
 }
