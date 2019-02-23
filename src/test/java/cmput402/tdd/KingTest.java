@@ -97,4 +97,15 @@ public class KingTest
 	    	}
     	}
     }
+    
+    /**
+     * test for getName of the piece that is shown on the board
+     * @throws Exception 
+     */
+    public void testGetName() throws Exception {
+    	King king = new King("R", 0, 0);
+    	assertEquals(king.getName(), "RK");
+    	king = new King("B", 0, 0);
+    	assertEquals(king.getName(), "BK");
+    }
 }
