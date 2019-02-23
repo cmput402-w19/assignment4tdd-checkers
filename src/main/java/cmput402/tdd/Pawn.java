@@ -10,9 +10,34 @@ public class Pawn extends Piece{
 		return super.getColor() + "P";
 	}
 
-	public int[] getTargetCoords(boolean isLeft, int moveDistance) {
+	public int[] getTargetCoords(boolean isLeft, int moveDistance) throws Exception {
+		if (moveDistance >= 3) {
+			throw new Exception("invalid move distance");
+		}
+		
+		int[] newPos = new int[4];
+		int rowDirection = 1;
+		int columnDirection = 1;
+		
+		if(isLeft) {
+			columnDirection = -1;
+		}
+		if(this.getColor() == "R") {
+			rowDirection = -1;
+		}
+		newPos[0] = this.getXPosition() + moveDistance * rowDirection;
+		newPos[1] = this.getYPosition() + moveDistance * columnDirection;
+		newPos[2] = moveDistance;
+		
+		// left is 1
+		if (isLeft) {
+			newPos[3] = 1;
+		}
+		else {
+			newPos[3] = 2;
+		}
 		// TODO Auto-generated method stub
-		return null;
+		return newPos;
 	}
 
 }

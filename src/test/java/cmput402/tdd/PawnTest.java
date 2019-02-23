@@ -80,7 +80,7 @@ public class PawnTest extends TestCase {
     	assertEquals(coords2[2], 2); // distance
     	assertEquals(coords2[3], 2); // left = 1 right = 2
     	
-    	// Test moving distance of 2 as Red
+    	// Test moving distance of 2 as Red right
     	Pawn testPawn3 = new Pawn("R", 3, 3);
     	int[] coords3 = new int[4];
     	coords3 = testPawn3.getTargetCoords(false, 2);
@@ -93,7 +93,7 @@ public class PawnTest extends TestCase {
     	Pawn testPawn4 = new Pawn("B", 3, 3);
     	int[] coords4 = new int[4];
     	coords4 = testPawn4.getTargetCoords(true, 2);
-    	assertEquals(coords4[0], 1); // row - position
+    	assertEquals(coords4[0], 5); // row - position
     	assertEquals(coords4[1], 1); // column - position
     	assertEquals(coords4[2], 2); // distance
     	assertEquals(coords4[3], 1); // left = 1 right = 2
