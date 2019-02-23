@@ -18,6 +18,10 @@ public class Board {
 		return this.currentTotalRedPieces;
 	}
 
+	public Piece getBoardPiece(int xCoordinate, int yCoordinate) {
+		return null;
+	}
+
 	public boolean pieceInLegalBound(int xCoord, int yCoord) {
 		boolean isOutOfHorizontalBound = ((xCoord < 0) || (xCoord > 7));
 		boolean isOutOfVerticalBound = ((yCoord < 0) || (yCoord > 7));

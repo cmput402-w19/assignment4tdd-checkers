@@ -21,7 +21,20 @@ public class BoardTest extends TestCase {
     public static Test suite() {
         return new TestSuite( BoardTest.class );
     }
-    
+
+    /**
+     *Tests to see if the requested location is a piece (not null) or empty (null)
+     * The test cases are based on illegal bounds, a legal bound with no piece class (null) and
+     * an actual instantiated piece. 
+     */
+    public void testGetBoardPiece() {
+	    Board checkersBoard = new Board();
+
+	    assertNotNull(checkersBoard.getBoardPiece(1,1));
+	    assertNull(checkersBoard.getBoardPiece(5, 5));
+	    assertNull(checkersBoard.getBoardPiece(-1, 2));
+    }
+
     public void testGetBlackTotalPieces() {
     	Board checkersBoard = new Board();
     	
