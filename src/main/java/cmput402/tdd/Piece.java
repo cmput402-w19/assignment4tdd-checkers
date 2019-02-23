@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 public abstract class Piece {
 	
 	private int xPosition;
@@ -63,4 +65,8 @@ public abstract class Piece {
 		}
 		return false;
 	}
+	
+	public abstract String getName();
+	
+	public abstract ArrayList<int[]> legalMoves(Board board) throws Exception;
 }

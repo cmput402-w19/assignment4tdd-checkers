@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -12,6 +14,18 @@ class ConcretePiece extends Piece {
 	public ConcretePiece(String color, int xPosition, int yPosition) throws Exception {
 		super(color, xPosition, yPosition);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<int[]> legalMoves(Board board) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
