@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 public class Pawn extends Piece{
 	
 	public Pawn(String color, int xPosition, int yPosition) throws Exception {
@@ -11,7 +13,7 @@ public class Pawn extends Piece{
 	}
 
 	public int[] getTargetCoords(boolean isLeft, int moveDistance) throws Exception {
-		if (moveDistance >= 3) {
+		if (!(moveDistance == 1 || moveDistance == 2)) {
 			throw new Exception("invalid move distance");
 		}
 		
@@ -39,5 +41,11 @@ public class Pawn extends Piece{
 		// TODO Auto-generated method stub
 		return newPos;
 	}
+	
+	public ArrayList<int[]> legalMoves(Board board) throws Exception {
+		return null;
+	}
+
+	
 
 }
