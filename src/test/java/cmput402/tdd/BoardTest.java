@@ -31,7 +31,7 @@ public class BoardTest extends TestCase {
 	    Board checkersBoard = new Board();
 
 	    assertNotNull(checkersBoard.getBoardPiece(1,1));
-	    assertNull(checkersBoard.getBoardPiece(5, 5));
+	    assertNull(checkersBoard.getBoardPiece(6, 6));
 	    assertNull(checkersBoard.getBoardPiece(-1, 2));
     }
 
