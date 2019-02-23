@@ -4,12 +4,10 @@ public class Pawn extends Piece{
 	
 	public Pawn(String color, int xPosition, int yPosition) throws Exception {
 		super(color, xPosition, yPosition);
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getColor() + "P";
 	}
 
 }
