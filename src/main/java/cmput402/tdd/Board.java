@@ -10,15 +10,15 @@ public class Board {
 		this.currentTotalRedPieces = 12;
 	}
 
-	public Piece getPiece(int x, int y) {
-		return null;
-	}
-
 	public int getBlackTotalPiece() {
 		return this.currentTotalBlackPieces;
 	}
 
 	public int getRedTotalPiece() {
 		return this.currentTotalRedPieces;
+	}
+
+	public boolean pieceInLegalBound(int xCoord, int yCoord) {
+		return true;
 	}
 }
