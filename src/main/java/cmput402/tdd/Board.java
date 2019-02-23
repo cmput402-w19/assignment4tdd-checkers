@@ -10,7 +10,14 @@ public class Board {
 		this.currentTotalBlackPieces = 12;
 		this.currentTotalRedPieces = 12;
 		board = new Piece[8][8];
-		board[1][1] = new Pawn("B", 1, 1);
+		for(int oddCol = 1, evenCol = 0; oddCol < 8; oddCol +=2, evenCol +=2) {
+			board[0][evenCol] = new Pawn("B", 0, evenCol);
+			board[1][oddCol] = new Pawn("B", 1, oddCol);
+			board[2][evenCol] = new Pawn("B", 2, evenCol);
+			board[5][oddCol] = new Pawn("R", 5, oddCol);
+			board[6][evenCol] = new Pawn("R", 6, evenCol);
+			board[7][oddCol] = new Pawn("R", 7, oddCol);
+		}
 	}
 
 	public int getBlackTotalPiece() {
