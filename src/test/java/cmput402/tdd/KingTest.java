@@ -6,6 +6,8 @@ import junit.framework.TestSuite;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.Arrays;
+
 /**
  * Unit test for King class
  */
@@ -107,5 +109,70 @@ public class KingTest
     	assertEquals(king.getName(), "RK");
     	king = new King("B", 0, 0);
     	assertEquals(king.getName(), "BK");
+    }
+    
+    /**
+     * test for testGetTargetCoord 
+     * it should return the 4 different diagonal coordinate of distance 1 or 2 
+     * depending on the arguments
+     * @throws Exception 
+     */
+    public void testGetTargetCoord() throws Exception {
+    	int x = 0;
+    	int y = 0;
+    	int[] output;
+    	int[] expectedOutput;
+    	
+    	King king = new King("R", x, y);
+    	
+    	//left up
+    	output = king.getTargetCoord(true, true, 1);
+    	expectedOutput = new int[] {-1, -1, 1, 3};
+    	assertTrue(Arrays.equals(expectedOutput, output));
+    	
+    	//left down
+    	output = king.getTargetCoord(true, false, 1);
+    	expectedOutput = new int[] {1, -1, 1, 4};
+    	assertTrue(Arrays.equals(expectedOutput, output));
+    	
+    	//right up
+    	output = king.getTargetCoord(false, true, 1);
+    	expectedOutput = new int[] {-1, 1, 1, 5};
+    	assertTrue(Arrays.equals(expectedOutput, output));
+    	
+    	//right down
+    	output = king.getTargetCoord(false, false, 1);
+    	expectedOutput = new int[] {1, 1, 1, 6};
+    	assertTrue(Arrays.equals(expectedOutput, output));
+    	
+    	king = new King("R", 3, 3);
+    	//left up
+    	output = king.getTargetCoord(true, true, 2);
+    	expectedOutput = new int[] {1, 1, 2, 3};
+    	assertTrue(Arrays.equals(expectedOutput, output));
+    	
+    	try {
+    		king = new King("R", 0, 0);
+    		king.getTargetCoord(true, true, 3);
+    		assert(false);
+    	} catch(Exception e) {
+    		assert(true);
+    	}
+    	
+    	try {
+    		king = new King("R", 0, 0);
+    		king.getTargetCoord(true, true, 0);
+    		assert(false);
+    	} catch(Exception e) {
+    		assert(true);
+    	}
+    	
+    	try {
+    		king = new King("R", 0, 0);
+    		king.getTargetCoord(true, true, -1);
+    		assert(false);
+    	} catch(Exception e) {
+    		assert(true);
+    	}
     }
 }

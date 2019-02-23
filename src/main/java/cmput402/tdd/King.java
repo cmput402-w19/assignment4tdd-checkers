@@ -10,4 +10,9 @@ public class King extends Piece {
 	public String getName() {
 		return super.getColor() + "K";
 	}
+	
+	int[] getTargetCoord(Boolean left, Boolean up, int distance) {
+		
+		return null;
+	}
 }
