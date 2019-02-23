@@ -54,6 +54,12 @@ public class Board {
 
 	public int[] isValidMove(int targetRow, int targetCol, ArrayList<int[]> moves) {
 
+		for(int index =0; index < moves.size(); index++) {
+			if(moves.get(index)[0] == targetRow && moves.get(index)[1] == targetCol) {
+				return moves.get(index);
+			}
+		}
+
 		return null;
 	}
 }
