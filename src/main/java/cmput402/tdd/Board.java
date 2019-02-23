@@ -19,6 +19,9 @@ public class Board {
 	}
 
 	public boolean pieceInLegalBound(int xCoord, int yCoord) {
-		return true;
+		boolean isOutOfHorizontalBound = ((xCoord < 0) || (xCoord > 7));
+		boolean isOutOfVerticalBound = ((yCoord < 0) || (yCoord > 7));
+
+		return !(isOutOfHorizontalBound || isOutOfVerticalBound);
 	}
 }
