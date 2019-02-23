@@ -11,4 +11,8 @@ public class Board {
 	public int getBlackTotalPiece() {
 		return this.currentTotalBlackPieces;
 	}
+
+	public int getRedTotalPiece() {
+		return (Integer) null;
+	}
 }

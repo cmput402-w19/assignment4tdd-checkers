@@ -27,4 +27,10 @@ public class BoardTest extends TestCase {
     	
     	assert(checkersBoard.getBlackTotalPiece() == 12);
     }
+
+    public void testGetRedTotalPieces() {
+	    Board checkersBoard = new Board();
+
+	    assert(checkersBoard.getRedTotalPiece() == 12);
+    }
 }
