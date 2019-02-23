@@ -10,4 +10,9 @@ public class Pawn extends Piece{
 		return super.getColor() + "P";
 	}
 
+	public int[] getTargetCoords(boolean isLeft, int moveDistance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
