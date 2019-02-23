@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 public class King extends Piece {
 	
 	public King(String color, int xPosition, int yPosition) throws Exception {
@@ -49,4 +51,10 @@ public class King extends Piece {
 
 		return target;
 	}
+	
+	
+	public ArrayList<int[]> legalMoves(Board board) {
+		return null;
+	}
+	
 }

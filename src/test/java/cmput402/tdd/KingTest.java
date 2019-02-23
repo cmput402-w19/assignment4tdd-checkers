@@ -3,16 +3,22 @@ package cmput402.tdd;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import static org.mockito.Matchers.anyInt;
 
 /**
  * Unit test for King class
  */
 public class KingTest 
     extends TestCase
+    
 {
     /**
      * Create the test case
@@ -177,5 +183,191 @@ public class KingTest
     	} catch(Exception e) {
     		assert(true);
     	}
+    }
+    
+    private void assertLegalMoves(ArrayList<int[]> expectedOutput, ArrayList<int[]> output) {
+    	assert(output.size() == expectedOutput.size());
+    	for(int i = 0; i<expectedOutput.size(); i++) {
+			assertEquals(Arrays.toString(expectedOutput.get(i)), Arrays.toString(output.get(i)));
+		}
+    }
+    
+    public void testLegalMoves() throws Exception {
+    	Board mockBoard = mock(Board.class);
+    	//top left corner
+    	King myKing = new King("B", 0, 0);
+    	when(mockBoard.inBounds(-1, -1)).thenReturn(false);
+    	when(mockBoard.inBounds(-1, 1)).thenReturn(false);
+    	when(mockBoard.inBounds(-2, -2)).thenReturn(false);
+    	when(mockBoard.inBounds(-2, 2)).thenReturn(false);
+    	when(mockBoard.inBounds(1, -1)).thenReturn(false);
+    	when(mockBoard.inBounds(2, -2)).thenReturn(false);
+    	
+    	when(mockBoard.inBounds(1, 1)).thenReturn(true);
+    	when(mockBoard.inBounds(2, 2)).thenReturn(true);
+    	
+    	when(mockBoard.getPiece(anyInt(), anyInt())).thenReturn(null);
+    	
+    	ArrayList<int[]> output = myKing.legalMoves(mockBoard);
+    	ArrayList<int[]> expectedOutput = new ArrayList<int[]>();
+    	int[] tmp = {1,1,1,6};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//top right corner
+    	myKing = new King("B", 0, 7);
+    	when(mockBoard.inBounds(-1, 8)).thenReturn(false);
+    	when(mockBoard.inBounds(-2, 9)).thenReturn(false);
+    	when(mockBoard.inBounds(1, 8)).thenReturn(false);
+    	when(mockBoard.inBounds(2, 9)).thenReturn(false);
+    	when(mockBoard.inBounds(-1, 6)).thenReturn(false);
+    	when(mockBoard.inBounds(-2, 5)).thenReturn(false);
+    	
+    	when(mockBoard.inBounds(1, 6)).thenReturn(true);
+    	when(mockBoard.inBounds(2, 5)).thenReturn(true);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	tmp = new int[] {1,6,1,4};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//bottom left corner
+    	myKing = new King("B", 7, 0);
+    	when(mockBoard.inBounds(8, -1)).thenReturn(false);
+    	when(mockBoard.inBounds(9, -2)).thenReturn(false);
+    	when(mockBoard.inBounds(8, 1)).thenReturn(false);
+    	when(mockBoard.inBounds(9, 2)).thenReturn(false);
+    	when(mockBoard.inBounds(6, -1)).thenReturn(false);
+    	when(mockBoard.inBounds(5, -2)).thenReturn(false);
+    	
+    	when(mockBoard.inBounds(6, 1)).thenReturn(true);
+    	when(mockBoard.inBounds(5, 2)).thenReturn(true);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	tmp = new int[] {6,1,1,5};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//bottom right corner
+    	myKing = new King("B", 7, 7);
+    	when(mockBoard.inBounds(8, 8)).thenReturn(false);
+    	when(mockBoard.inBounds(9, 9)).thenReturn(false);
+    	when(mockBoard.inBounds(8, 6)).thenReturn(false);
+    	when(mockBoard.inBounds(9, 5)).thenReturn(false);
+    	when(mockBoard.inBounds(6, 8)).thenReturn(false);
+    	when(mockBoard.inBounds(5, 9)).thenReturn(false);
+    	
+    	when(mockBoard.inBounds(6, 6)).thenReturn(true);
+    	when(mockBoard.inBounds(5, 5)).thenReturn(true);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	tmp = new int[] {6, 6, 1, 3};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	
+    	//surrounded by enemy and can capture
+    	when(mockBoard.inBounds(anyInt(), anyInt())).thenReturn(true);
+
+    	myKing = new King("R", 3, 3);    	
+    	King enemyKing1 = new King("B", 2, 2);
+    	King enemyKing2 = new King("B", 2, 4);
+    	King enemyKing3 = new King("B", 4, 2);
+    	King enemyKing4 = new King("B", 4, 4);
+    	
+    	when(mockBoard.getPiece(2, 2)).thenReturn(enemyKing1);
+    	when(mockBoard.getPiece(2, 4)).thenReturn(enemyKing2);
+    	when(mockBoard.getPiece(4, 2)).thenReturn(enemyKing3);
+    	when(mockBoard.getPiece(4, 4)).thenReturn(enemyKing4);
+    	
+    	when(mockBoard.getPiece(1, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(1, 5)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 5)).thenReturn(null);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	tmp = new int[] {1,1,2,3};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {5,1,2,4};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {1,5,2,5};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {5,5,2,6};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//surrounded by enemy and can capture
+    	myKing = new King("R", 3, 3);
+    	
+    	King enemyKing5 = new King("B", 1, 1);
+    	King enemyKing6 = new King("B", 1, 5);
+    	King enemyKing7 = new King("B", 5, 1);
+    	King enemyKing8 = new King("B", 5, 5);
+    	
+    	when(mockBoard.getPiece(2, 2)).thenReturn(enemyKing1);
+    	when(mockBoard.getPiece(2, 4)).thenReturn(enemyKing2);
+    	when(mockBoard.getPiece(4, 2)).thenReturn(enemyKing3);
+    	when(mockBoard.getPiece(4, 4)).thenReturn(enemyKing4);
+    	
+    	when(mockBoard.getPiece(1, 1)).thenReturn(enemyKing5);
+    	when(mockBoard.getPiece(1, 5)).thenReturn(enemyKing6);
+    	when(mockBoard.getPiece(5, 1)).thenReturn(enemyKing7);
+    	when(mockBoard.getPiece(5, 5)).thenReturn(enemyKing8);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//surrounded by friendly pieces
+    	myKing = new King("R", 3, 3);
+    	
+    	King friendlyKing1 = new King("R", 2, 2);
+    	King friendlyKing2 = new King("R", 2, 4);
+    	King friendlyKing3 = new King("R", 4, 2);
+    	King friendlyKing4 = new King("R", 4, 4);
+    	
+    	when(mockBoard.getPiece(2, 2)).thenReturn(friendlyKing1);
+    	when(mockBoard.getPiece(2, 4)).thenReturn(friendlyKing2);
+    	when(mockBoard.getPiece(4, 2)).thenReturn(friendlyKing3);
+    	when(mockBoard.getPiece(4, 4)).thenReturn(friendlyKing4);
+    	
+    	when(mockBoard.getPiece(1, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(1, 5)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 5)).thenReturn(null);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	this.assertLegalMoves(expectedOutput, output);
+    	
+    	//surrounded by nothing
+    	myKing = new King("R", 3, 3);
+    	
+    	when(mockBoard.getPiece(2, 2)).thenReturn(null);
+    	when(mockBoard.getPiece(2, 4)).thenReturn(null);
+    	when(mockBoard.getPiece(4, 2)).thenReturn(null);
+    	when(mockBoard.getPiece(4, 4)).thenReturn(null);
+    	
+    	when(mockBoard.getPiece(1, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(1, 5)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 1)).thenReturn(null);
+    	when(mockBoard.getPiece(5, 5)).thenReturn(null);
+    	    	
+    	output = myKing.legalMoves(mockBoard);
+    	expectedOutput = new ArrayList<int[]>();
+    	tmp = new int[] {2,2,1,3};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {4,2,1,4};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {2,4,1,5};
+    	expectedOutput.add(tmp);
+    	tmp = new int[] {4,4,1,6};
+    	expectedOutput.add(tmp);
+    	this.assertLegalMoves(expectedOutput, output);
+    	
     }
 }
