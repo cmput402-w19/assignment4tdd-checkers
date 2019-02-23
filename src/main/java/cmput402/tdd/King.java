@@ -8,6 +8,6 @@ public class King extends Piece {
 	}
 
 	public String getName() {
-		return null;
+		return super.getColor() + "K";
 	}
 }
