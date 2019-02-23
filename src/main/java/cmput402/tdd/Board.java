@@ -63,7 +63,15 @@ public class Board {
 		return null;
 	}
 
-	public int isCapture(int[] move) {
-		return Integer.parseInt(null);
+	public int isCapture(int[] move) throws Exception {
+		if(move.length > 0) {
+			if(move[2] == 2) {
+				return move[3];
+			} else {
+				return 0;
+			}
+		} else {
+			throw new Exception("Move length must be greater than 0");
+		}
 	}
 }
