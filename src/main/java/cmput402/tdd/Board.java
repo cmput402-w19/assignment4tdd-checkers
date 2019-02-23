@@ -2,11 +2,13 @@ package cmput402.tdd;
 
 public class Board {
 
-	
+	private int currentTotalBlackPieces;
+
 	public Board() {
+		this.currentTotalBlackPieces = 12;
 	}
 
 	public int getBlackTotalPiece() {
-		return (Integer) null;
+		return this.currentTotalBlackPieces;
 	}
 }
