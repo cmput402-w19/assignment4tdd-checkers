@@ -48,11 +48,18 @@ public class Pawn extends Piece{
 		int[] leftMove = this.getTargetCoords(true, 1);
 		if(board.inBounds(leftMove[0], leftMove[1])){
 			int[] leftMove2 = this.getTargetCoords(true, 2);
-			if(this.isEnemyPiece(board.getPiece(leftMove[0], leftMove[1])) & board.inBounds(leftMove2[0], leftMove2[1]) & board.getPiece(leftMove2[0], leftMove2[1]) == null) {
-				moves.add(leftMove2);
-			} else {
-				if(board.inBounds(leftMove[0], leftMove[1]) & board.getPiece(leftMove[0],leftMove[1]) == null) {
-					moves.add(leftMove);
+			if(this.isEnemyPiece(board.getPiece(leftMove[0], leftMove[1]))){
+                if (board.inBounds(leftMove2[0], leftMove2[1])) {
+                    if(board.getPiece(leftMove2[0], leftMove2[1]) == null) {
+                        moves.add(leftMove2);
+                    }
+                }
+            }   
+            else {
+				if(board.inBounds(leftMove[0], leftMove[1])) {
+                    if(board.getPiece(leftMove[0],leftMove[1]) == null) {
+                        moves.add(leftMove);
+                    }
 				}
 			}
 			
@@ -61,12 +68,18 @@ public class Pawn extends Piece{
 		int[] rightMove = this.getTargetCoords(false, 1);
 		if(board.inBounds(rightMove[0], rightMove[1])){
 			int[] rightMove2 = this.getTargetCoords(false, 2);
-			if(this.isEnemyPiece(board.getPiece(rightMove[0],rightMove[1])) & board.inBounds(rightMove2[0], rightMove2[1]) & board.getPiece(rightMove2[0], rightMove2[1]) == null) {
-				moves.add(rightMove2);
+			if(this.isEnemyPiece(board.getPiece(rightMove[0],rightMove[1]))) {
+                if(board.inBounds(rightMove2[0], rightMove2[1])) {
+                    if(board.getPiece(rightMove2[0], rightMove2[1]) == null) {
+                            moves.add(rightMove2);
+                    }
+                }
 			} else {
-				if(board.inBounds(rightMove[0], rightMove[1]) & board.getPiece(rightMove[0], rightMove[1]) == null) {
+				if(board.inBounds(rightMove[0], rightMove[1])) {
+                    if (board.getPiece(rightMove[0], rightMove[1]) == null) {
 
-					moves.add(rightMove);
+                        moves.add(rightMove);  
+                    }
 				}
 			}
 		}
