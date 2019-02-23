@@ -56,67 +56,29 @@ public class King extends Piece {
 	public ArrayList<int[]> legalMoves(Board board) throws Exception {
 		ArrayList<int[]> moves = new ArrayList<int[]>();
 
-		int[] leftUpMove = this.getTargetCoord(true, true, 1);
-		
-		if(board.inBounds(leftUpMove[0], leftUpMove[1])){
-			int[] leftUpMove2 = this.getTargetCoord(true, true, 2);
-			if(this.isEnemyPiece(board.getPiece(leftUpMove[0], leftUpMove[1])) && 
-					board.inBounds(leftUpMove2[0], leftUpMove2[1]) && 
-					board.getPiece(leftUpMove2[0], leftUpMove2[1]) == null) {
-				moves.add(leftUpMove2);
-			} else {
-				if(board.inBounds(leftUpMove[0], leftUpMove[1]) && board.getPiece(leftUpMove[0],leftUpMove[1]) == null) {
-					moves.add(leftUpMove);
+		Boolean left;
+		Boolean up;
+		int[] move;
+		for (int i = 0; i < 2; i++) {
+			left = (i % 2) == 0;
+			for (int j = 0; j < 2; j++) {
+				up = (j % 2) == 0;
+				move = this.getTargetCoord(left, up, 1);
+				if(board.inBounds(move[0], move[1])){
+					int[] move2 = this.getTargetCoord(left, up, 2);
+					if(this.isEnemyPiece(board.getPiece(move[0], move[1])) && 
+							board.inBounds(move2[0], move2[1]) && 
+							board.getPiece(move2[0], move2[1]) == null) {
+						moves.add(move2);
+					} else {
+						if(board.inBounds(move[0], move[1]) && board.getPiece(move[0],move[1]) == null) {
+							moves.add(move);
+						}
+					}
+					
 				}
 			}
-			
-		}
-		
-		int[] leftDownMove = this.getTargetCoord(true, false, 1);
-		
-		if(board.inBounds(leftDownMove[0], leftDownMove[1])){
-			int[] leftDownMove2 = this.getTargetCoord(true, false, 2);
-			if(this.isEnemyPiece(board.getPiece(leftDownMove[0], leftDownMove[1])) && 
-					board.inBounds(leftDownMove2[0], leftDownMove2[1]) && 
-					board.getPiece(leftDownMove2[0], leftDownMove2[1]) == null) {
-				moves.add(leftDownMove2);
-			} else {
-				if(board.inBounds(leftDownMove[0], leftDownMove[1]) && board.getPiece(leftDownMove[0],leftDownMove[1]) == null) {
-					moves.add(leftDownMove);
-				}
-			}
-			
-		}
-		
-		int[] rightUpMove = this.getTargetCoord(false, true, 1);
-		if(board.inBounds(rightUpMove[0], rightUpMove[1])){
-			int[] rightUpMove2 = this.getTargetCoord(false, true, 2);
-			if(this.isEnemyPiece(board.getPiece(rightUpMove[0],rightUpMove[1])) && 
-					board.inBounds(rightUpMove2[0], rightUpMove2[1]) && 
-					board.getPiece(rightUpMove2[0], rightUpMove2[1]) == null) {
-				moves.add(rightUpMove2);
-			} else {
-				if(board.inBounds(rightUpMove[0], rightUpMove[1]) && board.getPiece(rightUpMove[0], rightUpMove[1]) == null) {
-
-					moves.add(rightUpMove);
-				}
-			}
-		}
-		
-		int[] rightDownMove = this.getTargetCoord(false, false, 1);
-		if(board.inBounds(rightDownMove[0], rightDownMove[1])){
-			int[] rightDownMove2 = this.getTargetCoord(false, false, 2);
-			if(this.isEnemyPiece(board.getPiece(rightDownMove[0],rightDownMove[1])) && 
-					board.inBounds(rightDownMove2[0], rightDownMove2[1]) && 
-					board.getPiece(rightDownMove2[0], rightDownMove2[1]) == null) {
-				moves.add(rightDownMove2);
-			} else {
-				if(board.inBounds(rightDownMove[0], rightDownMove[1]) && board.getPiece(rightDownMove[0], rightDownMove[1]) == null) {
-
-					moves.add(rightDownMove);
-				}
-			}
-		}
+		}		
 		return moves;
 	}
 	
