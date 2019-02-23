@@ -54,4 +54,10 @@ public class PawnTest extends TestCase {
     		assert(true);
     	}
     }
+    
+    public void testGetName() throws Exception {
+    	Pawn testPawn = new Pawn("B", 0, 0);
+    	String name = testPawn.getName();
+    	assertEquals(name, "BP");
+    }
 }
