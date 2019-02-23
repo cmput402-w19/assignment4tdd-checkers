@@ -25,9 +25,9 @@ public class BoardTest extends TestCase {
     /**
      *Tests to see if the requested location is a piece (not null) or empty (null)
      * The test cases are based on illegal bounds, a legal bound with no piece class (null) and
-     * an actual instantiated piece. 
+     * an actual instantiated piece.
      */
-    public void testGetBoardPiece() {
+    public void testGetBoardPiece() throws Exception {
 	    Board checkersBoard = new Board();
 
 	    assertNotNull(checkersBoard.getBoardPiece(1,1));
@@ -35,19 +35,19 @@ public class BoardTest extends TestCase {
 	    assertNull(checkersBoard.getBoardPiece(-1, 2));
     }
 
-    public void testGetBlackTotalPieces() {
+    public void testGetBlackTotalPieces() throws Exception {
     	Board checkersBoard = new Board();
     	
     	assert(checkersBoard.getBlackTotalPiece() == 12);
     }
 
-    public void testGetRedTotalPieces() {
+    public void testGetRedTotalPieces() throws Exception {
 	    Board checkersBoard = new Board();
 
 	    assert(checkersBoard.getRedTotalPiece() == 12);
     }
 
-    public void testPieceInLegalBound() {
+    public void testPieceInLegalBound() throws Exception {
         Board checkersBoard = new Board();
 
         assertTrue(checkersBoard.pieceInLegalBound(4,4));
