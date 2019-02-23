@@ -120,4 +120,45 @@ public class BoardTest extends TestCase {
         output = checkersBoard.isValidMove(1, 4, testMoves);
         assertNull(output);
     }
+
+    /**
+     * Tests if the piece is able to capture a piece.
+     * Takes in an int array of values [targetRow, targetCol, distance, direction]
+     * If the output is 0, the move is not a capture.
+     * Any output from 1-6 is a capture move. 
+     * @throws Exception
+     */
+
+    public void testIsCapture() throws Exception {
+        Board board = new Board();
+
+        int[] move = new int[] {2, 4, 2, 1};
+        assert(board.isCapture(move) == 1);
+
+        move = new int[] {2, 4, 2, 2};
+        assert(board.isCapture(move) == 2);
+
+        move = new int[] {2, 4, 2, 3};
+        assert(board.isCapture(move) == 3);
+
+        move = new int[] {2, 4, 2, 4};
+        assert(board.isCapture(move) == 4);
+
+        move = new int[] {2, 4, 2, 5};
+        assert(board.isCapture(move) == 5);
+
+        move = new int[] {2, 4, 2, 6};
+        assert(board.isCapture(move) == 6);
+
+        move = new int[] {2, 4, 1, 6};
+        assert(board.isCapture(move) == 0);
+
+        move = new int[] {};
+        try {
+            board.isCapture(move);
+            assert(false);
+        } catch(Exception e){
+            assert(true);
+        }
+    }
 }

@@ -62,4 +62,8 @@ public class Board {
 
 		return null;
 	}
+
+	public int isCapture(int[] move) {
+		return Integer.parseInt(null);
+	}
 }
