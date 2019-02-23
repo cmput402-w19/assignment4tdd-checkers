@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Board {
 
-	private int currentTotalBlackPieces;
-	private int currentTotalRedPieces;
+	private int blackTotalPieces;
+	private int redTotalPieces;
 	private Piece[][] board;
 
 	public Board() throws Exception {
-		this.currentTotalBlackPieces = 12;
-		this.currentTotalRedPieces = 12;
+		this.blackTotalPieces = 12;
+		this.redTotalPieces = 12;
 		this.initBoard();
 	}
 
@@ -28,15 +28,15 @@ public class Board {
 	}
 
 	public int getBlackTotalPiece() {
-		return this.currentTotalBlackPieces;
+		return this.blackTotalPieces;
 	}
 
 	public int getRedTotalPiece() {
-		return this.currentTotalRedPieces;
+		return this.redTotalPieces;
 	}
 
-	public Piece getBoardPiece(int xCoordinate, int yCoordinate) {
-		boolean legalCoords = this.pieceInLegalBound(xCoordinate, yCoordinate);
+	public Piece getPiece(int xCoordinate, int yCoordinate) {
+		boolean legalCoords = this.inBounds(xCoordinate, yCoordinate);
 
 		if(!legalCoords) {
 			return null;
@@ -45,7 +45,7 @@ public class Board {
 		}
 	}
 
-	public boolean pieceInLegalBound(int xCoord, int yCoord) {
+	public boolean inBounds(int xCoord, int yCoord) {
 		boolean isOutOfHorizontalBound = ((xCoord < 0) || (xCoord > 7));
 		boolean isOutOfVerticalBound = ((yCoord < 0) || (yCoord > 7));
 
@@ -54,8 +54,8 @@ public class Board {
 
 	public int[] isValidMove(int targetRow, int targetCol, ArrayList<int[]> moves) {
 
-		for(int index =0; index < moves.size(); index++) {
-			if(moves.get(index)[0] == targetRow && moves.get(index)[1] == targetCol) {
+		for (int index = 0; index < moves.size(); index++) {
+			if (moves.get(index)[0] == targetRow && moves.get(index)[1] == targetCol) {
 				return moves.get(index);
 			}
 		}
@@ -64,8 +64,8 @@ public class Board {
 	}
 
 	public int isCapture(int[] move) throws Exception {
-		if(move.length > 0) {
-			if(move[2] == 2) {
+		if (move.length > 0) {
+			if (move[2] == 2) {
 				return move[3];
 			} else {
 				return 0;

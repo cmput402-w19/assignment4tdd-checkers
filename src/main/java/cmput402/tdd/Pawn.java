@@ -1,5 +1,7 @@
 package cmput402.tdd;
 
+import java.util.ArrayList;
+
 public class Pawn extends Piece{
 	
 	public Pawn(String color, int xPosition, int yPosition) throws Exception {
@@ -11,7 +13,7 @@ public class Pawn extends Piece{
 	}
 
 	public int[] getTargetCoords(boolean isLeft, int moveDistance) throws Exception {
-		if (moveDistance >= 3) {
+		if (!(moveDistance == 1 || moveDistance == 2)) {
 			throw new Exception("invalid move distance");
 		}
 		
@@ -39,5 +41,39 @@ public class Pawn extends Piece{
 		// TODO Auto-generated method stub
 		return newPos;
 	}
+	
+	public ArrayList<int[]> legalMoves(Board board) throws Exception {
+		ArrayList<int[]> moves = new ArrayList<int[]>();
+
+		int[] leftMove = this.getTargetCoords(true, 1);
+		if(board.inBounds(leftMove[0], leftMove[1])){
+			int[] leftMove2 = this.getTargetCoords(true, 2);
+			if(this.isEnemyPiece(board.getPiece(leftMove[0], leftMove[1])) & board.inBounds(leftMove2[0], leftMove2[1]) & board.getPiece(leftMove2[0], leftMove2[1]) == null) {
+				moves.add(leftMove2);
+			} else {
+				if(board.inBounds(leftMove[0], leftMove[1]) & board.getPiece(leftMove[0],leftMove[1]) == null) {
+					moves.add(leftMove);
+				}
+			}
+			
+		}
+		
+		int[] rightMove = this.getTargetCoords(false, 1);
+		if(board.inBounds(rightMove[0], rightMove[1])){
+			int[] rightMove2 = this.getTargetCoords(false, 2);
+			if(this.isEnemyPiece(board.getPiece(rightMove[0],rightMove[1])) & board.inBounds(rightMove2[0], rightMove2[1]) & board.getPiece(rightMove2[0], rightMove2[1]) == null) {
+				moves.add(rightMove2);
+			} else {
+				if(board.inBounds(rightMove[0], rightMove[1]) & board.getPiece(rightMove[0], rightMove[1]) == null) {
+
+					moves.add(rightMove);
+				}
+			}
+		}
+	
+		return moves;
+	}
+
+	
 
 }

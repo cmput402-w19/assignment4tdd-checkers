@@ -31,9 +31,9 @@ public class BoardTest extends TestCase {
     public void testGetBoardPiece() throws Exception {
 	    Board checkersBoard = new Board();
 
-	    assertNotNull(checkersBoard.getBoardPiece(1,1));
-	    assertNull(checkersBoard.getBoardPiece(4, 4));
-	    assertNull(checkersBoard.getBoardPiece(-1, 2));
+	    assertNotNull(checkersBoard.getPiece(1,1));
+	    assertNull(checkersBoard.getPiece(4, 4));
+	    assertNull(checkersBoard.getPiece(-1, 2));
     }
 
     /**
@@ -46,27 +46,27 @@ public class BoardTest extends TestCase {
 
         for(int oddCol = 1, evenCol = 0; oddCol < maxLength; oddCol +=2, evenCol +=2) {
             //The following block tests the proper instantiation of pieces
-            assertNotNull(checkersBoard.getBoardPiece(0, evenCol));
-            assertNotNull(checkersBoard.getBoardPiece(1, oddCol));
-            assertNotNull(checkersBoard.getBoardPiece(2, evenCol));
+            assertNotNull(checkersBoard.getPiece(0, evenCol));
+            assertNotNull(checkersBoard.getPiece(1, oddCol));
+            assertNotNull(checkersBoard.getPiece(2, evenCol));
 
-            assertNotNull(checkersBoard.getBoardPiece(5, oddCol));
-            assertNotNull(checkersBoard.getBoardPiece(6, evenCol));
-            assertNotNull(checkersBoard.getBoardPiece(7, oddCol));
+            assertNotNull(checkersBoard.getPiece(5, oddCol));
+            assertNotNull(checkersBoard.getPiece(6, evenCol));
+            assertNotNull(checkersBoard.getPiece(7, oddCol));
 
             //The following tests for the gaps between the checkers pieces instantiation
-            assertNull(checkersBoard.getBoardPiece(0, oddCol));
-            assertNull(checkersBoard.getBoardPiece(1, evenCol));
-            assertNull(checkersBoard.getBoardPiece(2, oddCol));
+            assertNull(checkersBoard.getPiece(0, oddCol));
+            assertNull(checkersBoard.getPiece(1, evenCol));
+            assertNull(checkersBoard.getPiece(2, oddCol));
 
-            assertNull(checkersBoard.getBoardPiece(5, evenCol));
-            assertNull(checkersBoard.getBoardPiece(6, oddCol));
-            assertNull(checkersBoard.getBoardPiece(7, evenCol));
+            assertNull(checkersBoard.getPiece(5, evenCol));
+            assertNull(checkersBoard.getPiece(6, oddCol));
+            assertNull(checkersBoard.getPiece(7, evenCol));
         }
 
         for(int row = 3; row < 5; ++row) {
             for(int col = 0; col < 8; ++col) {
-                assertNull(checkersBoard.getBoardPiece(row, col));
+                assertNull(checkersBoard.getPiece(row, col));
             }
         }
     }
@@ -86,11 +86,11 @@ public class BoardTest extends TestCase {
     public void testPieceInLegalBound() throws Exception {
         Board checkersBoard = new Board();
 
-        assertTrue(checkersBoard.pieceInLegalBound(4,4));
-        assertFalse(checkersBoard.pieceInLegalBound(-1, 3));
-        assertFalse(checkersBoard.pieceInLegalBound(8, 2));
-        assertFalse(checkersBoard.pieceInLegalBound(3, -1));
-        assertFalse(checkersBoard.pieceInLegalBound(3, 9));
+        assertTrue(checkersBoard.inBounds(4,4));
+        assertFalse(checkersBoard.inBounds(-1, 3));
+        assertFalse(checkersBoard.inBounds(8, 2));
+        assertFalse(checkersBoard.inBounds(3, -1));
+        assertFalse(checkersBoard.inBounds(3, 9));
     }
 
     /**
