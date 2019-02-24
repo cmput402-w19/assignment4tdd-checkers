@@ -46,9 +46,15 @@ public class Board {
 	}
 
     public void setPiecePosition(Piece piece, int targetRow, int targetCol) {
-
+        board[targetRow][targetCol] = piece;
+        if (piece != null) {
+            try {
+                piece.setPosition(targetRow, targetCol);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-
 
     public boolean inBounds(int xCoord, int yCoord) {
 		boolean isOutOfHorizontalBound = ((xCoord < 0) || (xCoord > 7));
