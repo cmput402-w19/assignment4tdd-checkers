@@ -85,4 +85,8 @@ public class Board {
 			throw new Exception("Move length must be greater than 0");
 		}
 	}
+
+	public boolean playMove(boolean isBlackTurn, int inputRow, int inputCol, int targetRow, int targetCol) {
+        return Boolean.parseBoolean(null);
+    }
 }

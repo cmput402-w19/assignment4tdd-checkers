@@ -181,4 +181,134 @@ public class BoardTest extends TestCase {
         assertNull(board.getPiece(4, 4));
     }
 
+    private void assertMove(int row, int col, Board board) {
+        Piece currentPiece = board.getPiece(row, col);
+        assert(currentPiece.getXPosition() == row);
+        assert(currentPiece.getYPosition() == col);
+
+    }
+
+    public void testPlayMove() throws Exception {
+        Board checkersBoard = new Board();
+        checkersBoard.initBoard();
+
+        Pawn pawnPromote = new Pawn("R", 1, 1);
+        checkersBoard.setPiecePosition(pawnPromote, 1, 1);
+        checkersBoard.setPiecePosition(null, 0, 2);
+        Boolean validMove = checkersBoard.playMove(false, 1, 1, 0,2 );
+        Piece redPromotedPiece = checkersBoard.getPiece(0, 2);
+        assert(redPromotedPiece instanceof King);
+        assert(redPromotedPiece.getColor() == "R");
+
+        Pawn blackPawnPromote = new Pawn("B", 6, 2);
+        checkersBoard.setPiecePosition(blackPawnPromote, 6, 2);
+        checkersBoard.setPiecePosition(null, 7, 1);
+        validMove = checkersBoard.playMove(true, 6, 2, 7,1 );
+        Piece blackPromotedPiece = checkersBoard.getPiece(7, 1);
+        assert(blackPromotedPiece instanceof King);
+        assert(blackPromotedPiece.getColor() == "B");
+
+        checkersBoard.initBoard();
+        King redKing = new King("R", 3, 3);
+        // Testing four different eat conditions for king
+        checkersBoard.setPiecePosition(redKing, 3, 3);
+        Pawn blackPawn1 = new Pawn("B", 2, 2);
+        Pawn blackPawn2 = new Pawn("B", 2, 4);
+        Pawn blackPawn3 = new Pawn("B", 4, 2);
+        Pawn blackPawn4 = new Pawn("B", 4, 4);
+
+        checkersBoard.setPiecePosition(blackPawn1, 2, 2);
+        checkersBoard.setPiecePosition(blackPawn2, 2, 4);
+        checkersBoard.setPiecePosition(blackPawn3, 4, 2);
+        checkersBoard.setPiecePosition(blackPawn4, 4, 4);
+
+        checkersBoard.setPiecePosition(null, 1, 1);
+        checkersBoard.setPiecePosition(null, 1, 5);
+        checkersBoard.setPiecePosition(null, 5, 1);
+        checkersBoard.setPiecePosition(null, 5, 5);
+
+        // teleport and eat all four surrounding pieces
+        Boolean validMove2 = checkersBoard.playMove(false, 3, 3, 1,1);
+        assertMove(1, 1, checkersBoard);
+        assertTrue(validMove2);
+        checkersBoard.setPiecePosition(redKing, 3, 3);
+
+        Boolean validMove3 = checkersBoard.playMove(false, 3, 3, 1,5);
+        assertTrue(validMove3);
+
+        assertMove(1, 5, checkersBoard);
+        checkersBoard.setPiecePosition(redKing, 3, 3);
+
+        Boolean validMove4 = checkersBoard.playMove(false, 3, 3, 5,1);
+        assertMove(5, 1, checkersBoard);
+        assertTrue(validMove4);
+        checkersBoard.setPiecePosition(redKing, 3, 3);
+
+        validMove = checkersBoard.playMove(false, 3, 3, 5,5);
+        assertMove(5, 5, checkersBoard);
+        assertTrue(validMove);
+
+
+        checkersBoard.initBoard();
+        // Trying to move to an empty spot invalid
+        validMove = checkersBoard.playMove(false, 2, 1, 3,2 );
+        assertFalse(validMove);
+
+
+        // Black move valid
+        validMove = checkersBoard.playMove(true, 2, 6, 3,5 );
+        assertMove(3, 5, checkersBoard);
+        assertTrue(validMove);
+
+        // Red move valid
+        validMove = checkersBoard.playMove(false, 5, 1, 4,2 );
+        assertMove(4, 2, checkersBoard);
+        assertTrue(validMove);
+
+        // Black trying to move red piece invalid
+        validMove = checkersBoard.playMove(true, 5, 5, 4,6 );
+        assertFalse(validMove);
+
+        //Red turn, invalid move attempt
+        validMove = checkersBoard.playMove(false, 5, 7, 4,8 );
+        assertFalse(validMove);
+
+        //Red turn, moved intentionally to set up eat play valid
+        validMove = checkersBoard.playMove(false, 4, 2, 3,3 );
+        assertMove(3, 3, checkersBoard);
+        assertTrue(validMove);
+
+        //Black turn captures the red piece on left valid
+        validMove = checkersBoard.playMove(true, 2, 4, 4,2 );
+        assertMove(4, 2, checkersBoard);
+        assertTrue(validMove);
+        assert(checkersBoard.getBlackTotalPiece() == 12);
+        assert(checkersBoard.getRedTotalPiece() == 11);
+
+        //Red turn, captures the black piece on left valid
+        validMove = checkersBoard.playMove(false, 5, 3, 3,1 );
+        assertMove(3, 1, checkersBoard);
+        assertTrue(validMove);
+        assert(checkersBoard.getBlackTotalPiece() == 11);
+        assert(checkersBoard.getRedTotalPiece() == 11);
+
+
+        //Black turn, captures the red piece on right valid
+        validMove = checkersBoard.playMove(true, 2, 0, 4,2);
+        assertMove(4, 2, checkersBoard);
+        assertTrue(validMove);
+        assert(checkersBoard.getBlackTotalPiece() == 11);
+        assert(checkersBoard.getRedTotalPiece() == 10);
+
+        //Red turn, eats black piece on right valid
+        Pawn dummyRedPawn = new Pawn("R", 5, 1);
+        checkersBoard.setPiecePosition(dummyRedPawn, 5, 1);
+        validMove = checkersBoard.playMove(false, 5, 1, 3,3);
+        assertMove(3, 3, checkersBoard);
+        assertTrue(validMove);
+        assert(checkersBoard.getBlackTotalPiece() == 10);
+        assert(checkersBoard.getRedTotalPiece() == 10);
+    }
+
+
 }
