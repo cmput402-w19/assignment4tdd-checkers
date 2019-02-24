@@ -7,6 +7,7 @@ public class Board {
 	private int blackTotalPieces;
 	private int redTotalPieces;
 	private Piece[][] board;
+	private int boardSize = 8;
 
 	public Board() throws Exception {
 		this.blackTotalPieces = 12;
@@ -28,6 +29,34 @@ public class Board {
 			board[7][oddCol] = new Pawn("R", 7, oddCol);
 		}
 	}
+	
+	public void printBoard(){    
+		System.out.println("           Col");
+		System.out.println("   0  1  2  3  4  5  6  7");
+        for(int i  = 0; i < this.boardSize; i++){
+        	if(i == 2) {
+        		System.out.print("R ");
+        	} else if (i == 3) {
+        		System.out.print("o ");
+        	} else if (i == 4) {
+        		System.out.print("w ");
+        	} else {
+        		System.out.print("  ");
+        	}
+        	System.out.print(i);
+        	System.out.print("|");
+            for(int j = 0 ; j < this.boardSize; j++){
+            	if(board[i][j] != null){
+            		System.out.print(board[i][j].getName());
+            	} else{
+            		System.out.print("  ");
+            	}
+               System.out.print("|");
+            }
+            System.out.println("\n   -------------------------");
+        }
+        System.out.print("\n");
+    }
 
 	public int getBlackTotalPiece() {
 		return this.blackTotalPieces;
