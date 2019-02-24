@@ -45,15 +45,11 @@ public class Board {
 		}
 	}
 
-    public void setPiecePosition(Piece piece, int targetRow, int targetCol) {
-        board[targetRow][targetCol] = piece;
+    public void setPiecePosition(Piece piece, int targetRow, int targetCol) throws Exception {
         if (piece != null) {
-            try {
-                piece.setPosition(targetRow, targetCol);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            piece.setPosition(targetRow, targetCol);
         }
+        board[targetRow][targetCol] = piece;
     }
 
     public boolean inBounds(int xCoord, int yCoord) {
