@@ -45,7 +45,12 @@ public class Board {
 		}
 	}
 
-	public boolean inBounds(int xCoord, int yCoord) {
+    public void setPiecePosition(Piece piece, int targetRow, int targetCol) {
+
+    }
+
+
+    public boolean inBounds(int xCoord, int yCoord) {
 		boolean isOutOfHorizontalBound = ((xCoord < 0) || (xCoord > 7));
 		boolean isOutOfVerticalBound = ((yCoord < 0) || (yCoord > 7));
 

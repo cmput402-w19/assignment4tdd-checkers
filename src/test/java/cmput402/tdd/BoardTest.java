@@ -161,4 +161,19 @@ public class BoardTest extends TestCase {
             assert(true);
         }
     }
+
+    public void testSetPiecePosition() throws Exception {
+        Board board = new Board();
+        Piece testPawn = new Pawn("B", 3, 3);
+
+        board.setPiecePosition(testPawn, 3, 3);
+        assertNotNull(board.getPiece(3, 3));
+
+        try {
+            board.setPiecePosition(testPawn,-1, -1);
+            assert(false);
+        } catch(Exception e) {
+            assert(true);
+        }
+    }
 }
