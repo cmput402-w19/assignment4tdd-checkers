@@ -175,5 +175,10 @@ public class BoardTest extends TestCase {
         } catch(Exception e) {
             assert(true);
         }
+
+        // Test the if statement branch for if piece is null
+        board.setPiecePosition(null, 4,4);
+        assertNull(board.getPiece(4, 4));
     }
+
 }
