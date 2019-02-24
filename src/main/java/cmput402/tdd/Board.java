@@ -32,7 +32,7 @@ public class Board {
 	
 	public void printBoard(){    
 		System.out.println("           Col");
-		System.out.println("   0  1  2  3  4  5  6  7");
+		System.out.println("     0  1  2  3  4  5  6  7");
         for(int i  = 0; i < this.boardSize; i++){
         	if(i == 2) {
         		System.out.print("R ");
