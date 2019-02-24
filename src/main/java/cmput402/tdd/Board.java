@@ -7,6 +7,7 @@ public class Board {
 	private int blackTotalPieces;
 	private int redTotalPieces;
 	private Piece[][] board;
+	private int boardSize = 8;
 
 	public Board() throws Exception {
 		this.blackTotalPieces = 12;
@@ -28,6 +29,34 @@ public class Board {
 			board[7][oddCol] = new Pawn("R", 7, oddCol);
 		}
 	}
+	
+	public void printBoard(){    
+		System.out.println("           Col");
+		System.out.println("     0  1  2  3  4  5  6  7");
+        for(int i  = 0; i < this.boardSize; i++){
+        	if(i == 2) {
+        		System.out.print("R ");
+        	} else if (i == 3) {
+        		System.out.print("o ");
+        	} else if (i == 4) {
+        		System.out.print("w ");
+        	} else {
+        		System.out.print("  ");
+        	}
+        	System.out.print(i);
+        	System.out.print("|");
+            for(int j = 0 ; j < this.boardSize; j++){
+            	if(board[i][j] != null){
+            		System.out.print(board[i][j].getName());
+            	} else{
+            		System.out.print("  ");
+            	}
+               System.out.print("|");
+            }
+            System.out.println("\n   -------------------------");
+        }
+        System.out.print("\n");
+    }
 
 	public int getBlackTotalPiece() {
 		return this.blackTotalPieces;
@@ -98,56 +127,53 @@ public class Board {
 					} else if (currentPiece.getColor() == "B" && targetRow == 7) {
 						board[targetRow][targetCol] = new King("B", targetRow, targetCol);
 					} else {
-						int isEat = this.isCapture(moveValidate);
-						if(isEat != 0) {
-							if (currentPiece.getColor() == "R") {
-
-								blackTotalPieces--;
-							} else {
-
-								redTotalPieces--;
-							}
-						}
-						int[] targetCoord;
-
-						switch (isEat) {
-							case 1:
-								// eat left pawn
-								if (currentPiece.getColor() == "R") {
-									board[inputRow - 1][inputCol - 1] = null;
-								} else {
-									board[inputRow + 1][inputCol - 1] = null;
-								}
-								break;
-							case 2:
-								// eat right pawn
-								if (currentPiece.getColor() == "R") {
-									board[inputRow - 1][inputCol + 1] = null;
-								} else {
-									board[inputRow + 1][inputCol + 1] = null;
-								}
-								break;
-							case 3:
-								// eat up left king
-								board[inputRow - 1][inputCol - 1] = null;
-								break;
-							case 4:
-								// eat down left king
-								board[inputRow + 1][inputCol - 1] = null;
-								break;
-							case 5:
-								// eat up right king
-								board[inputRow - 1][inputCol + 1] = null;
-								break;
-							case 6:
-								// eat down right king
-								board[inputRow + 1][inputCol + 1] = null;
-								break;
-						}
-
 						board[targetRow][targetCol] = currentPiece;
 						currentPiece.setPosition(targetRow, targetCol);
 					}
+					int isEat = this.isCapture(moveValidate);
+					if(isEat != 0) {
+						if (currentPiece.getColor() == "R") {
+							blackTotalPieces--;
+						} else {
+
+							redTotalPieces--;
+						}
+					}
+					switch (isEat) {
+						case 1:
+							// eat left pawn
+							if (currentPiece.getColor() == "R") {
+								board[inputRow - 1][inputCol - 1] = null;
+							} else {
+								board[inputRow + 1][inputCol - 1] = null;
+							}
+							break;
+						case 2:
+							// eat right pawn
+							if (currentPiece.getColor() == "R") {
+								board[inputRow - 1][inputCol + 1] = null;
+							} else {
+								board[inputRow + 1][inputCol + 1] = null;
+							}
+							break;
+						case 3:
+							// eat up left king
+							board[inputRow - 1][inputCol - 1] = null;
+							break;
+						case 4:
+							// eat down left king
+							board[inputRow + 1][inputCol - 1] = null;
+							break;
+						case 5:
+							// eat up right king
+							board[inputRow - 1][inputCol + 1] = null;
+							break;
+						case 6:
+							// eat down right king
+							board[inputRow + 1][inputCol + 1] = null;
+							break;
+					}
+
 				} else {
 					System.out.println("Invalid move.");
 					return false;

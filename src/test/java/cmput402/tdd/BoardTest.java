@@ -309,6 +309,12 @@ public class BoardTest extends TestCase {
         assert(checkersBoard.getBlackTotalPiece() == 10);
         assert(checkersBoard.getRedTotalPiece() == 10);
     }
+    
+    //dummy test for code coverage
+    public void testPrintBoard() throws Exception {
+    	Board board = new Board();
+    	board.printBoard();
+    }
 
 
 }
