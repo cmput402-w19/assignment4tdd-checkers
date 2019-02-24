@@ -170,7 +170,7 @@ public class BoardTest extends TestCase {
         assertNotNull(board.getPiece(3, 3));
 
         try {
-            board.setPiecePosition(testPawn,-1, -1);
+            board.setPiecePosition(null,-1, -1);
             assert(false);
         } catch(Exception e) {
             assert(true);
