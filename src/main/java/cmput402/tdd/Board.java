@@ -21,12 +21,13 @@ public class Board {
 		this.redTotalPieces = 12;
 
 		for(int oddCol = 1, evenCol = 0; oddCol < 8; oddCol +=2, evenCol +=2) {
-			board[0][evenCol] = new Pawn("B", 0, evenCol);
-			board[1][oddCol] = new Pawn("B", 1, oddCol);
-			board[2][evenCol] = new Pawn("B", 2, evenCol);
-			board[5][oddCol] = new Pawn("R", 5, oddCol);
-			board[6][evenCol] = new Pawn("R", 6, evenCol);
-			board[7][oddCol] = new Pawn("R", 7, oddCol);
+			setPiecePosition(new Pawn("B", 0, evenCol), 0, evenCol);
+			setPiecePosition(new Pawn("B", 1, evenCol), 1, oddCol);
+			setPiecePosition(new Pawn("B", 2, evenCol), 2, evenCol);
+
+			setPiecePosition(new Pawn("R", 5, evenCol), 5, oddCol);
+			setPiecePosition(new Pawn("R", 6, evenCol), 6, evenCol);
+			setPiecePosition(new Pawn("R", 7, evenCol), 7, oddCol);
 		}
 	}
 	
@@ -123,12 +124,11 @@ public class Board {
 				if (moveValidate != null) {
 					board[inputRow][inputCol] = null;
 					if (currentPiece.getColor() == "R" && targetRow == 0) {
-						board[targetRow][targetCol] = new King("R", targetRow, targetCol);
+						setPiecePosition(new King("R", targetRow, targetCol), targetRow, targetCol);
 					} else if (currentPiece.getColor() == "B" && targetRow == 7) {
-						board[targetRow][targetCol] = new King("B", targetRow, targetCol);
+						setPiecePosition(new King("B", targetRow, targetCol), targetRow, targetCol);
 					} else {
-						board[targetRow][targetCol] = currentPiece;
-						currentPiece.setPosition(targetRow, targetCol);
+						setPiecePosition(currentPiece, targetRow, targetCol);
 					}
 					int isEat = this.isCapture(moveValidate);
 					if(isEat != 0) {
