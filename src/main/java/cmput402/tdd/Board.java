@@ -91,6 +91,10 @@ public class Board {
 		return !(isOutOfHorizontalBound || isOutOfVerticalBound);
 	}
 
+	/**
+	 * Determines if the move given from input is a standard move or not.
+	 * Returns null if the move is illegal.
+	 */
 	public int[] isValidMove(int targetRow, int targetCol, ArrayList<int[]> moves) {
 
 		for (int index = 0; index < moves.size(); index++) {
@@ -102,6 +106,10 @@ public class Board {
 		return null;
 	}
 
+    /**
+	 * Returns an int of the type of capture (positional). Each int from 1-6
+	 * corresponds to a different type of positional capture.
+	 */
 	public int isCapture(int[] move) throws Exception {
 		if (move.length > 0) {
 			if (move[2] == 2) {
@@ -113,6 +121,12 @@ public class Board {
 			throw new Exception("Move length must be greater than 0");
 		}
 	}
+
+	/**
+	 * This function determines if the target rows and columns are a legal move.
+	 * This function includes determination of whether capturing is possible and promotes
+	 * a pawn class as well.
+	 */
 
 	public boolean playMove(boolean isBlackTurn, int inputRow, int inputCol, int targetRow, int targetCol) throws Exception {
 		Piece currentPiece = getPiece(inputRow, inputCol);

@@ -70,19 +70,27 @@ public class BoardTest extends TestCase {
             }
         }
     }
-
+   /**
+     * Unit test to test the getter of total black pieces
+     */
     public void testGetBlackTotalPieces() throws Exception {
     	Board checkersBoard = new Board();
     	
     	assert(checkersBoard.getBlackTotalPiece() == 12);
     }
 
+   /**
+     * Unit test to test the getter of total red pieces
+     */
     public void testGetRedTotalPieces() throws Exception {
 	    Board checkersBoard = new Board();
 
 	    assert(checkersBoard.getRedTotalPiece() == 12);
     }
-
+  
+   /**
+     * Unit test to if a piece is legally on the board 
+     */
     public void testPieceInLegalBound() throws Exception {
         Board checkersBoard = new Board();
 
@@ -161,7 +169,10 @@ public class BoardTest extends TestCase {
             assert(true);
         }
     }
-
+   
+   /**
+     * Unit test to test if the setter method sets piece objects correctly
+     */
     public void testSetPiecePosition() throws Exception {
         Board board = new Board();
         Piece testPawn = new Pawn("B", 3, 3);
@@ -181,12 +192,21 @@ public class BoardTest extends TestCase {
         assertNull(board.getPiece(4, 4));
     }
 
+    /**
+     * Helper function to assert that moves were made properly based on the piece provided.
+     */
+
     private void assertMove(int row, int col, Board board) {
         Piece currentPiece = board.getPiece(row, col);
         assert(currentPiece.getXPosition() == row);
         assert(currentPiece.getYPosition() == col);
 
     }
+
+    /**
+     * Unit test to test the legal sequences and moves a checker piece can have.
+     * This test includes promotions, capturing and moves.
+     */
 
     public void testPlayMove() throws Exception {
         Board checkersBoard = new Board();
