@@ -14,4 +14,6 @@ TDD-A4 (Feature Branch):
 ## Compile program using:
 
 mvn clean package assembly:single
-java -jar SNAPSHOT-generated
+
+## run from root using:
+java -jar target/tdd-0.0.1-SNAPSHOT-jar-with-dependencies.jar
