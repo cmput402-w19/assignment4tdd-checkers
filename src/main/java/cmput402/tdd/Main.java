@@ -32,10 +32,10 @@ public class Main {
 					System.out.println("Please enter a move below in the format (inputRow, inputColumn, targetRow, targetColumn):");
 	                line = keyboardScanner.nextLine();
 	                String[] tmp = line.split(",");
-                	inputRow = Integer.parseInt(tmp[0]);
-                	inputCol = Integer.parseInt(tmp[1]);
-                	inputTargetRow = Integer.parseInt(tmp[2]);
-                	inputTargetCol = Integer.parseInt(tmp[3]);
+                	inputRow = Integer.parseInt(tmp[0].trim());
+                	inputCol = Integer.parseInt(tmp[1].trim());
+                	inputTargetRow = Integer.parseInt(tmp[2].trim());
+                	inputTargetCol = Integer.parseInt(tmp[3].trim());
                 	if(board.playMove(blackTurn, inputRow, inputCol, inputTargetRow, inputTargetCol)) {
                 		blackTurn = !blackTurn;
                 	}
